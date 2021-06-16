@@ -91,7 +91,7 @@ exports.addItemToCart = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getCart = async (req, res) => {
+exports.getCart = catchAsync(async (req, res) => {
   const carts = await Cart.find().populate({
     path: "items.productId",
     select: "name price total",
@@ -106,9 +106,9 @@ exports.getCart = async (req, res) => {
       cart,
     },
   });
-};
+});
 
-exports.emptyCart = async (req, res) => {
+exports.emptyCart = catchAsync(async (req, res) => {
   const carts = await Cart.find().populate({
     path: "items.productId",
     select: "name price total",
@@ -126,4 +126,4 @@ exports.emptyCart = async (req, res) => {
       cart,
     },
   });
-};
+});
